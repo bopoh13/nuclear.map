@@ -1,0 +1,291 @@
+{"type":"FeatureCollection",
+ "features":[
+{
+ "type":"Feature",
+ "properties":{
+  "name":"Аскино с",
+  "cs":{
+   "cnt":6,
+   "avg":-0.05,
+   "min":-0.05,
+   "max":0.1
+  },
+  "pw":"Ci"
+ },
+ "geometry":{
+  "type":"Point",
+  "coordinates":[56.5787,56.0855]
+ },
+ "id":327380642
+},
+{
+ "type":"Feature",
+ "properties":{
+  "name":"Верхние Киги с",
+  "cs":{
+   "cnt":6,
+   "avg":-0.05,
+   "min":-0.05,
+   "max":0.1
+  },
+  "pw":"Ci"
+ },
+ "geometry":{
+  "type":"Point",
+  "coordinates":[58.6031,55.4069]
+ },
+ "id":339257830
+},
+{
+ "type":"Feature",
+ "properties":{
+  "name":"Павловка с",
+  "cs":{
+   "cnt":6,
+   "avg":0.1,
+   "min":0.1,
+   "max":0.1
+  },
+  "pw":"Ci"
+ },
+ "geometry":{
+  "type":"Point",
+  "coordinates":[56.5600,55.4211]
+ },
+ "id":662909560
+},
+{
+ "type":"Feature",
+ "properties":{
+  "name":"Караидель с",
+  "cs":{
+   "cnt":6,
+   "avg":-0.05,
+   "min":-0.05,
+   "max":0.1
+  },
+  "pw":"Ci"
+ },
+ "geometry":{
+  "type":"Point",
+  "coordinates":[56.9131,55.8327]
+ },
+ "id":755600647
+},
+{
+ "type":"Feature",
+ "properties":{
+  "name":"Акъяр с",
+  "cs":{
+   "cnt":6,
+   "avg":0.1,
+   "min":-0.05,
+   "max":0.1
+  },
+  "pw":"Ci"
+ },
+ "geometry":{
+  "type":"Point",
+  "coordinates":[58.2202,51.8651]
+ },
+ "id":782832143
+},
+{
+ "type":"Feature",
+ "properties":{
+  "name":"Кугарчи с",
+  "cs":{
+   "cnt":5,
+   "avg":-0.05,
+   "min":-0.05,
+   "max":0.1
+  },
+  "pw":"Ci"
+ },
+ "geometry":{
+  "type":"Point",
+  "coordinates":[56.8292,52.1490]
+ },
+ "id":782895726
+},
+{
+ "type":"Feature",
+ "properties":{
+  "name":"Тазларово с",
+  "cs":{
+   "cnt":6,
+   "avg":0.1,
+   "min":-0.05,
+   "max":0.1
+  },
+  "pw":"Ci"
+ },
+ "geometry":{
+  "type":"Point",
+  "coordinates":[56.6842,52.1502]
+ },
+ "id":782895947
+},
+{
+ "type":"Feature",
+ "properties":{
+  "name":"Исянгулово с",
+  "cs":{
+   "cnt":6,
+   "avg":-0.05,
+   "min":-0.05,
+   "max":0.1
+  },
+  "pw":"Ci"
+ },
+ "geometry":{
+  "type":"Point",
+  "coordinates":[56.5824,52.1896]
+ },
+ "id":782895972
+},
+{
+ "type":"Feature",
+ "properties":{
+  "name":"Дуван-Мечетлино с",
+  "cs":{
+   "cnt":6,
+   "avg":-0.05,
+   "min":-0.05,
+   "max":0.1
+  },
+  "pw":"Ci"
+ },
+ "geometry":{
+  "type":"Point",
+  "coordinates":[58.3085,55.6765]
+ },
+ "id":782969694
+},
+{
+ "type":"Feature",
+ "properties":{
+  "name":"Тастуба с",
+  "cs":{
+   "cnt":6,
+   "avg":-0.05,
+   "min":-0.05,
+   "max":0.1
+  },
+  "pw":"Ci"
+ },
+ "geometry":{
+  "type":"Point",
+  "coordinates":[57.8860,55.7594]
+ },
+ "id":803756731
+},
+{
+ "type":"Feature",
+ "properties":{
+  "name":"Новопетровское с",
+  "cs":{
+   "cnt":6,
+   "avg":-0.05,
+   "min":-0.05,
+   "max":0.1
+  },
+  "pw":"Ci"
+ },
+ "geometry":{
+  "type":"Point",
+  "coordinates":[56.5016,52.6183]
+ },
+ "id":804939346
+},
+{
+ "type":"Feature",
+ "properties":{
+  "name":"Калдарово д",
+  "cs":{
+   "cnt":6,
+   "avg":-0.05,
+   "min":-0.05,
+   "max":0.05
+  },
+  "pw":"Ci"
+ },
+ "geometry":{
+  "type":"Point",
+  "coordinates":[56.2579,52.7757]
+ },
+ "id":804939572
+},
+{
+ "type":"Feature",
+ "properties":{
+  "name":"Тляумбетово д",
+  "cs":{
+   "cnt":6,
+   "avg":-0.05,
+   "min":-0.05,
+   "max":0.1
+  },
+  "pw":"Ci"
+ },
+ "geometry":{
+  "type":"Point",
+  "coordinates":[56.3116,52.6666]
+ },
+ "id":804939699
+},
+{
+ "type":"Feature",
+ "properties":{
+  "name":"Нижнеутяшево д",
+  "cs":{
+   "cnt":5,
+   "avg":-0.05,
+   "min":-0.05,
+   "max":0.05
+  },
+  "pw":"Ci"
+ },
+ "geometry":{
+  "type":"Point",
+  "coordinates":[58.9684,55.6606]
+ },
+ "id":845898412
+},
+{
+ "type":"Feature",
+ "properties":{
+  "name":"Бердяш с",
+  "cs":{
+   "cnt":6,
+   "avg":-0.05,
+   "min":-0.05,
+   "max":0.1
+  },
+  "pw":"Ci"
+ },
+ "geometry":{
+  "type":"Point",
+  "coordinates":[57.2090,52.1779]
+ },
+ "id":1136151184
+},
+{
+ "type":"Feature",
+ "properties":{
+  "name":"Мраково с",
+  "cs":{
+   "cnt":5,
+   "avg":-0.05,
+   "min":-0.05,
+   "max":0.1
+  },
+  "pw":"Ci"
+ },
+ "geometry":{
+  "type":"Point",
+  "coordinates":[56.6223,52.7154]
+ },
+ "id":6528743285
+}
+]}

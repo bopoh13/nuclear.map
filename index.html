@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Nuclear pollution - Leaflet</title>
+	<meta charset="utf-8"/>
+	<meta name="author" content="issues:h8x@pm.me"/>
+	<meta name="date" content="2018-04-10" scheme="YYYY-MM-DD"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<link rel="shortcut icon" href="radioactive.ico" type="image/x-icon"/>
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin=""/>
+	<script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js" integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og==" crossorigin=""></script>
+
+	<style>
+		html, body {
+			height: 100%;
+			margin: 0;
+		}
+		#map-layer {
+			height: 100%;
+		}
+		.info {
+			padding: 6px 8px;
+			font: 14px/16px Arial, Helvetica, sans-serif;
+			background: rgba(255,255,255,0.8);
+			border: 2px solid rgba(0,0,0,0.2);
+			border-radius: 4px;
+		}
+		.info h3 {
+			margin: 0 0 5px;
+			color: #777;
+		}
+		.info h4 {
+			margin: -12px 0 10px;
+			color: #000;
+		}
+		.legend {
+			text-align: left;
+			line-height: 18px;
+			color: #555;
+		}
+		.legend i {
+			width: 18px;
+			height: 18px;
+			float: left;
+			margin-right: 8px;
+			opacity: 0.7;
+		}
+	</style>
+</head>
+<body>
+	<div id="map-layer"></div>
+	<script type="text/javascript" src="jsonlist.js"></script>
+	<script type="text/javascript">'use strict';
+	
+	// name of root directory of site
+	const url = 'https://raw.githubusercontent.com/bopoh13/nuclear.map';
+
+	const map = L.map('map-layer', {minZoom: 2}).setView([63.8, 93.8], 4);
+
+	function asKilloBq(power, dimension) {
+		switch(dimension) {
+			case 'Ci':
+				return power<0 ? '&lt;' + power*-37 : power*37;
+			case 'Bq':
+				return power<0 ? '&lt;' + power/-1000 : power/1000;
+			default:
+				console.log("Invalid power factor");
+				return power*1;
+		}
+	}
+
+	function setRadius(props) {
+		let defaultRadius = 37;
+
+		for (let item in props) {
+			if (item == 'cs') {
+				defaultRadius = props.cs['cnt'];
+				counterRadius++;
+				break;
+			} else if (item == 'sr') {
+				defaultRadius = props.sr['cnt'];
+			}
+		}
+		return defaultRadius;
+	}
+
+	const clef = 'ZHJteCIsImEiOiJjanEyd3Q5YW4xOTBiNDNwcGhrcjljeHNiIn0.KfUSr-tTIQCoWE8BtSN3Kw';
+
+	L.tileLayer(`https:\/\/api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1Ijoi${clef}`, {
+		maxZoom: 12,
+		//detectRetina: (L.Browser.retina ? true : false),
+		attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+			'<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+			'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+		id: 'mapbox.light'
+	}).addTo(map);
+
+	// control that shows state info on hover
+	const info = L.control();
+
+	info.onAdd = function (map) {
+		this._div = L.DomUtil.create('div', 'info');
+		this.update();
+		return this._div;
+	};
+
+	info.update = function (props) {
+		let text = '<h3>Nuclear pollution</h3>';
+
+		if (typeof props === 'undefined') {
+			text = `${text}Hover over an object`;
+		} else {
+			text = `${text}&emsp;<h4>${props.name}${(props.upd ? '&emsp;<sup>' +
+				new Date(props.upd.replace(/(\d+).(\d+).(\d+)/, '$3/$2/$1')).toLocaleDateString(window.navigator.language) +
+				'</sup><br/>' : '')}</h4>` + (props.cs ? '<sup>137</sup>Cs <i>in ' + props.cs['cnt'] + ' tests</i> was ' +
+				asKilloBq(props.cs['avg'], props.pw) + ' kBq / m<sup>2</sup><br/>&emsp;from values ' +
+				asKilloBq(props.cs['min'], props.pw) + ' &ndash; ' + asKilloBq(props.cs['max'], props.pw) +
+				' kBq / m<sup>2</sup><br/>'	: '') + (props.sr ? '<sup>90</sup>Sr <i>in ' + props.sr['cnt'] + ' tests</i> was ' +
+				asKilloBq(props.sr['avg'], props.pw) + ' kBq / m<sup>2</sup><br/>&emsp;from values ' + 
+				asKilloBq(props.sr['min'], props.pw) + ' &ndash; ' + asKilloBq(props.sr['max'], props.pw) +
+				' kBq / m<sup>2</sup><br/>' : '');
+		}
+		this._div.innerHTML = text;
+	};
+
+	info.addTo(map);
+
+	const legend = L.control({position: 'bottomright'});
+
+	legend.onAdd = function (map) {
+		let div = L.DomUtil.create('div', 'info legend'),
+			grades = [0, 10, 50, 150, 350, 550, 900, 1450],
+			labels = [],
+			from, to;
+
+		for (let i = 0; i < grades.length; i++) {
+			from = grades[i];
+			to = grades[i + 1];
+
+			labels.push(
+				`<i style="background:${getColor(from + grades[1])}"></i>` +
+				from + (to ? 'k&ndash;' + to + 'k' : 'k+'));
+		}
+
+		div.innerHTML = labels.join('<br/>');
+		return div;
+	};
+
+	legend.addTo(map);
+
+	// get color depending on activity radionuclides value kBq/m2
+	function getColor(d) {
+		return d > 1450 ? '#800026' :
+			d > 900 ? '#BD0026' :
+			d > 550 ? '#E31A1C' :
+			d > 350 ? '#FC4E2A' :
+			d > 150 ? '#FD8D3C' :
+			d > 50 ? '#FEB24C' :
+			d > 10 ? '#FED976' :
+			'#FFEDA0';
+	}
+
+	function style(feature) {
+		const props = feature.properties;
+
+		return {
+			weight: 2,
+			opacity: 1,
+			color: 'white',
+			dashArray: '2',
+			fillOpacity: 0.7,
+			fillColor: getColor(asKilloBq(props.cs['max'], props.pw))
+		};
+	}
+
+	function highlightFeature(e) {
+		const layer = e.target;
+
+		layer.setStyle({
+			weight: 4,
+			color: '#666',
+			dashArray: '1',
+			fillOpacity: 0.7
+		});
+
+		if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+			layer.bringToFront();
+		}
+
+		info.update(layer.feature.properties);
+	}
+
+	function resetHighlight(e) {
+		geojson.resetStyle(e.target);
+		info.update();
+	}
+
+	function onEachFeature(feature, layer) {
+		layer.on({
+			mouseover: highlightFeature,
+			mouseout: resetHighlight
+		});
+	}
+
+	let geojson;
+	let counterRadius = 0;
+	let radz = (0.5**(map.getMaxZoom()-map.getZoom()-2)).toFixed(3);
+	let reduceData = [];
+
+	const addGeoLayer = (data) => {
+		let total = 0;
+
+		geojson = L.geoJson(data, {
+			style: style,
+			onEachFeature: onEachFeature,
+			pointToLayer: function (feature, latlng) {
+				total++;
+
+				return L.circleMarker(latlng, {
+					radius: radz*setRadius(feature.properties)
+				});
+			}
+		}).addTo(map);
+
+		console.log(`Uploaded ${counterRadius} of ${total} radius of markers.`);
+	}
+
+	map.on({
+		zoomend: function(feature) {
+			radz = (0.5**(map.getMaxZoom()-map.getZoom()-2)).toFixed(3);
+
+			geojson.eachLayer((layer) => {
+				if (typeof layer._radius !== 'undefined') {
+					layer.setRadius(radz*setRadius(layer.feature.properties))
+				}
+			});
+		}
+	});
+
+	map.attributionControl.addAttribution('Expert Data from 1986 &copy; <a href="http://rb.mchs.gov.ru/rosgidromet/Archive/">SPA "Typhoon"</a>');
+
+	function filterData(obj) {
+		return obj.features.filter((item) => item.geometry.type == 'Point');
+	}
+
+	const fetchCount = async (filename) => {
+		const response = await fetch(`${url}/master/points/${filename}`);
+		const json = await response.json();
+		return json;
+	}
+	const counts = jsonfiles.map(async (filename) => {
+		const count = await fetchCount(filename);
+		return count;
+	});
+
+	Promise.all(counts).then((data) => {
+		data.forEach((obj) => {
+			reduceData.push.apply(reduceData, filterData(obj));
+		});
+	}).then(() => {
+		addGeoLayer(reduceData) // && setCirclesMarkers
+	}).catch((error) => {
+		console.log('Error:', error);
+	});
+
+	</script>
+</body>
+</html>
