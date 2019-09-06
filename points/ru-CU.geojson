@@ -1,0 +1,615 @@
+{"type":"FeatureCollection",
+ "features":[
+{
+ "type":"Feature",
+ "properties":{
+  "name":"Явлеи с",
+  "cs":{
+   "cnt":1,
+   "avg":0.1,
+   "min":0.1,
+   "max":0.1
+  },
+  "pw":"Ci"
+ },
+ "geometry":{
+  "type":"Point",
+  "coordinates":[46.5750,54.9115]
+ },
+ "id":336524676
+},
+{
+ "type":"Feature",
+ "properties":{
+  "name":"Стемасы с",
+  "cs":{
+   "cnt":1,
+   "avg":0.1,
+   "min":0.1,
+   "max":0.1
+  },
+  "pw":"Ci"
+ },
+ "geometry":{
+  "type":"Point",
+  "coordinates":[46.6157,54.7892]
+ },
+ "id":336524801
+},
+{
+ "type":"Feature",
+ "properties":{
+  "name":"Сойгино с",
+  "cs":{
+   "cnt":4,
+   "avg":0.1,
+   "min":0.1,
+   "max":0.1
+  },
+  "pw":"Ci"
+ },
+ "geometry":{
+  "type":"Point",
+  "coordinates":[47.0746,54.7882]
+ },
+ "id":336524838
+},
+{
+ "type":"Feature",
+ "properties":{
+  "name":"Бичурга-Баишево с",
+  "cs":{
+   "cnt":5,
+   "avg":0.1,
+   "min":-0.05,
+   "max":0.1
+  },
+  "pw":"Ci"
+ },
+ "geometry":{
+  "type":"Point",
+  "coordinates":[47.3070,54.7619]
+ },
+ "id":336524868
+},
+{
+ "type":"Feature",
+ "properties":{
+  "name":"Новые Айбеси с",
+  "cs":{
+   "cnt":6,
+   "avg":0.1,
+   "min":-0.05,
+   "max":0.2
+  },
+  "pw":"Ci"
+ },
+ "geometry":{
+  "type":"Point",
+  "coordinates":[47.0311,54.8095]
+ },
+ "id":336524944
+},
+{
+ "type":"Feature",
+ "properties":{
+  "name":"Иваньково-Ленино с",
+  "cs":{
+   "cnt":6,
+   "avg":0.1,
+   "min":0.1,
+   "max":0.1
+  },
+  "pw":"Ci"
+ },
+ "geometry":{
+  "type":"Point",
+  "coordinates":[46.6871,54.7120]
+ },
+ "id":336525059
+},
+{
+ "type":"Feature",
+ "properties":{
+  "name":"Борки п",
+  "cs":{
+   "cnt":4,
+   "avg":0.1,
+   "min":-0.05,
+   "max":0.1
+  },
+  "pw":"Ci"
+ },
+ "geometry":{
+  "type":"Point",
+  "coordinates":[46.6557,54.8358]
+ },
+ "id":942282472
+},
+{
+ "type":"Feature",
+ "properties":{
+  "name":"Низовка п",
+  "cs":{
+   "cnt":1,
+   "avg":0.3,
+   "min":0.3,
+   "max":0.3
+  },
+  "pw":"Ci"
+ },
+ "geometry":{
+  "type":"Point",
+  "coordinates":[46.7461,54.8282]
+ },
+ "id":942282500
+},
+{
+ "type":"Feature",
+ "properties":{
+  "name":"Кученяево п",
+  "cs":{
+   "cnt":2,
+   "avg":0.1,
+   "min":-0.05,
+   "max":0.1
+  },
+  "pw":"Ci"
+ },
+ "geometry":{
+  "type":"Point",
+  "coordinates":[46.6920,54.8189]
+ },
+ "id":942282616
+},
+{
+ "type":"Feature",
+ "properties":{
+  "name":"Знаменка п",
+  "cs":{
+   "cnt":1,
+   "avg":0.1,
+   "min":0.1,
+   "max":0.1
+  },
+  "pw":"Ci"
+ },
+ "geometry":{
+  "type":"Point",
+  "coordinates":[46.6830,54.8369]
+ },
+ "id":942282628
+},
+{
+ "type":"Feature",
+ "properties":{
+  "name":"Баевка п",
+  "cs":{
+   "cnt":1,
+   "avg":0.1,
+   "min":0.1,
+   "max":0.1
+  },
+  "pw":"Ci"
+ },
+ "geometry":{
+  "type":"Point",
+  "coordinates":[46.7592,54.8275]
+ },
+ "id":942282650
+},
+{
+ "type":"Feature",
+ "properties":{
+  "name":"Новиковка п",
+  "cs":{
+   "cnt":2,
+   "avg":-0.05,
+   "min":-0.05,
+   "max":0.1
+  },
+  "pw":"Ci"
+ },
+ "geometry":{
+  "type":"Point",
+  "coordinates":[46.6906,54.8440]
+ },
+ "id":942282737
+},
+{
+ "type":"Feature",
+ "properties":{
+  "name":"Восход п",
+  "cs":{
+   "cnt":2,
+   "avg":0.1,
+   "min":-0.05,
+   "max":0.2
+  },
+  "pw":"Ci"
+ },
+ "geometry":{
+  "type":"Point",
+  "coordinates":[46.5842,54.8015]
+ },
+ "id":942282864
+},
+{
+ "type":"Feature",
+ "properties":{
+  "name":"Новое Алтышево п",
+  "cs":{
+   "cnt":1,
+   "avg":0.1,
+   "min":0.1,
+   "max":0.1
+  },
+  "pw":"Ci"
+ },
+ "geometry":{
+  "type":"Point",
+  "coordinates":[46.7239,54.8202]
+ },
+ "id":942282911
+},
+{
+ "type":"Feature",
+ "properties":{
+  "name":"Анютино п",
+  "cs":{
+   "cnt":1,
+   "avg":0.1,
+   "min":0.1,
+   "max":0.1
+  },
+  "pw":"Ci"
+ },
+ "geometry":{
+  "type":"Point",
+  "coordinates":[46.7020,54.8289]
+ },
+ "id":942282927
+},
+{
+ "type":"Feature",
+ "properties":{
+  "name":"Сальный п",
+  "cs":{
+   "cnt":6,
+   "avg":0.1,
+   "min":-0.05,
+   "max":0.2
+  },
+  "pw":"Ci"
+ },
+ "geometry":{
+  "type":"Point",
+  "coordinates":[47.0089,54.8587]
+ },
+ "id":1152619618
+},
+{
+ "type":"Feature",
+ "properties":{
+  "name":"Первомайский п",
+  "cs":{
+   "cnt":5,
+   "avg":0.2,
+   "min":0.1,
+   "max":0.4
+  },
+  "pw":"Ci"
+ },
+ "geometry":{
+  "type":"Point",
+  "coordinates":[46.9547,54.9133]
+ },
+ "id":1152619749
+},
+{
+ "type":"Feature",
+ "properties":{
+  "name":"Чуварлеи с",
+  "cs":{
+   "cnt":9,
+   "avg":0.1,
+   "min":-0.05,
+   "max":0.1
+  },
+  "pw":"Ci"
+ },
+ "geometry":{
+  "type":"Point",
+  "coordinates":[46.4870,54.8582]
+ },
+ "id":1152620256
+},
+{
+ "type":"Feature",
+ "properties":{
+  "name":"Старые Айбеси с",
+  "cs":{
+   "cnt":3,
+   "avg":0.3,
+   "min":0.1,
+   "max":0.6
+  },
+  "pw":"Ci"
+ },
+ "geometry":{
+  "type":"Point",
+  "coordinates":[47.0523,54.9480]
+ },
+ "id":1152620492
+},
+{
+ "type":"Feature",
+ "properties":{
+  "name":"Ахматово с",
+  "cs":{
+   "cnt":4,
+   "avg":0.1,
+   "min":-0.05,
+   "max":0.1
+  },
+  "pw":"Ci"
+ },
+ "geometry":{
+  "type":"Point",
+  "coordinates":[46.4207,54.8518]
+ },
+ "id":1152620849
+},
+{
+ "type":"Feature",
+ "properties":{
+  "name":"Чапаевка п",
+  "cs":{
+   "cnt":6,
+   "avg":0.3,
+   "min":0.1,
+   "max":0.6
+  },
+  "pw":"Ci"
+ },
+ "geometry":{
+  "type":"Point",
+  "coordinates":[47.0229,54.9142]
+ },
+ "id":1152620949
+},
+{
+ "type":"Feature",
+ "properties":{
+  "name":"Ялушево д",
+  "cs":{
+   "cnt":4,
+   "avg":0.1,
+   "min":0.1,
+   "max":0.1
+  },
+  "pw":"Ci"
+ },
+ "geometry":{
+  "type":"Point",
+  "coordinates":[46.5393,54.8655]
+ },
+ "id":1152620978
+},
+{
+ "type":"Feature",
+ "properties":{
+  "name":"Искра п",
+  "cs":{
+   "cnt":4,
+   "avg":0.2,
+   "min":-0.05,
+   "max":0.3
+  },
+  "pw":"Ci"
+ },
+ "geometry":{
+  "type":"Point",
+  "coordinates":[46.9683,54.8744]
+ },
+ "id":1152621146
+},
+{
+ "type":"Feature",
+ "properties":{
+  "name":"Алатырь г",
+  "cs":{
+   "cnt":5,
+   "avg":0.1,
+   "min":0.1,
+   "max":0.1
+  },
+  "pw":"Ci"
+ },
+ "geometry":{
+  "type":"Point",
+  "coordinates":[46.5878,54.8419]
+ },
+ "id":2288716213
+},
+{
+ "type":"Feature",
+ "properties":{
+  "name":"Яблоновка д",
+  "cs":{
+   "cnt":2,
+   "avg":0.1,
+   "min":0.1,
+   "max":0.1
+  },
+  "pw":"Ci"
+ },
+ "geometry":{
+  "type":"Point",
+  "coordinates":[47.3321,54.6772]
+ },
+ "id":2625971459
+},
+{
+ "type":"Feature",
+ "properties":{
+  "name":"Новые Выселки д",
+  "cs":{
+   "cnt":4,
+   "avg":0.1,
+   "min":-0.05,
+   "max":0.3
+  },
+  "pw":"Ci"
+ },
+ "geometry":{
+  "type":"Point",
+  "coordinates":[47.1127,54.9860]
+ },
+ "id":2666695550
+},
+{
+ "type":"Feature",
+ "properties":{
+  "name":"Асаново д",
+  "cs":{
+   "cnt":3,
+   "avg":0.1,
+   "min":0.1,
+   "max":0.1
+  },
+  "pw":"Ci"
+ },
+ "geometry":{
+  "type":"Point",
+  "coordinates":[47.3522,54.7632]
+ },
+ "id":2857737419
+},
+{
+ "type":"Feature",
+ "properties":{
+  "name":"Новые Чукалы д",
+  "cs":{
+   "cnt":2,
+   "avg":0.1,
+   "min":-0.05,
+   "max":0.1
+  },
+  "pw":"Ci"
+ },
+ "geometry":{
+  "type":"Point",
+  "coordinates":[47.1786,54.6902]
+ },
+ "id":2857737420
+},
+{
+ "type":"Feature",
+ "properties":{
+  "name":"Русские Чукалы д",
+  "cs":{
+   "cnt":2,
+   "avg":0.1,
+   "min":0.1,
+   "max":0.1
+  },
+  "pw":"Ci"
+ },
+ "geometry":{
+  "type":"Point",
+  "coordinates":[47.1584,54.7005]
+ },
+ "id":2857737421
+},
+{
+ "type":"Feature",
+ "properties":{
+  "name":"Старые Чукалы д",
+  "cs":{
+   "cnt":2,
+   "avg":0.1,
+   "min":0.1,
+   "max":0.2
+  },
+  "pw":"Ci"
+ },
+ "geometry":{
+  "type":"Point",
+  "coordinates":[47.2009,54.7118]
+ },
+ "id":2857737422
+},
+{
+ "type":"Feature",
+ "properties":{
+  "name":"Шамкино с",
+  "cs":{
+   "cnt":1,
+   "avg":0.1,
+   "min":0.1,
+   "max":0.1
+  },
+  "pw":"Ci"
+ },
+ "geometry":{
+  "type":"Point",
+  "coordinates":[47.2667,54.7118]
+ },
+ "id":2857737423
+},
+{
+ "type":"Feature",
+ "properties":{
+  "name":"Соловьевский п",
+  "cs":{
+   "cnt":2,
+   "avg":0.1,
+   "min":0.1,
+   "max":0.1
+  },
+  "pw":"Ci"
+ },
+ "geometry":{
+  "type":"Point",
+  "coordinates":[46.8217,54.6799]
+ },
+ "id":2886162630
+},
+{
+ "type":"Feature",
+ "properties":{
+  "name":"Лесной п",
+  "cs":{
+   "cnt":2,
+   "avg":0.1,
+   "min":-0.05,
+   "max":0.1
+  },
+  "pw":"Ci"
+ },
+ "geometry":{
+  "type":"Point",
+  "coordinates":[46.7198,54.8727]
+ },
+ "id":3389015649
+},
+{
+ "type":"Feature",
+ "properties":{
+  "name":"Шумы п",
+  "cs":{
+   "cnt":5,
+   "avg":0.1,
+   "min":0.1,
+   "max":0.2
+  },
+  "pw":"Ci"
+ },
+ "geometry":{
+  "type":"Point",
+  "coordinates":[46.9896,54.7469]
+ },
+ "id":3389015650
+}
+]}

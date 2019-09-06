@@ -57,20 +57,20 @@
 
 	const map = L.map('map-layer', {minZoom: 2}).setView([63.8, 93.8], 4);
 
-	function asKilloBq(power, dimension) {
-		switch(dimension) {
+	function specificActivity(value, unit) {
+		switch(unit) {
 			case 'Ci':
-				return power<0 ? '&lt;' + power*-37 : power*37;
+				return value<0 ? '&lt;' + value*-37 : value*37;
 			case 'Bq':
-				return power<0 ? '&lt;' + power/-1000 : power/1000;
+				return value<0 ? '&lt;' + value/-1000 : value/1000;
 			default:
-				console.log("Invalid power factor");
-				return power*1;
+				console.log("Invalid value factor");
+				return value<0 ? '&lt;' + value*-1 : value*1;
 		}
 	}
 
-	function setRadius(props) {
-		let defaultRadius = 37;
+	function selectRadius(props) {
+		let defaultRadius = 10;
 
 		for (let item in props) {
 			if (item == 'cs') {
@@ -81,7 +81,7 @@
 				defaultRadius = props.sr['cnt'];
 			}
 		}
-		return defaultRadius;
+		return defaultRadius>10 ? defaultRadius : 10;
 	}
 
 	const clef = 'ZHJteCIsImEiOiJjanEyd3Q5YW4xOTBiNDNwcGhrcjljeHNiIn0.KfUSr-tTIQCoWE8BtSN3Kw';
@@ -113,11 +113,11 @@
 			text = `${text}&emsp;<h4>${props.name}${(props.upd ? '&emsp;<sup>' +
 				new Date(props.upd.replace(/(\d+).(\d+).(\d+)/, '$3/$2/$1')).toLocaleDateString(window.navigator.language) +
 				'</sup><br/>' : '')}</h4>` + (props.cs ? '<sup>137</sup>Cs <i>in ' + props.cs['cnt'] + ' tests</i> was ' +
-				asKilloBq(props.cs['avg'], props.pw) + ' kBq / m<sup>2</sup><br/>&emsp;from values ' +
-				asKilloBq(props.cs['min'], props.pw) + ' &ndash; ' + asKilloBq(props.cs['max'], props.pw) +
+				specificActivity(props.cs['avg'], props.pw) + ' kBq / m<sup>2</sup><br/>&emsp;from values ' +
+				specificActivity(props.cs['min'], props.pw) + ' &ndash; ' + specificActivity(props.cs['max'], props.pw) +
 				' kBq / m<sup>2</sup><br/>'	: '') + (props.sr ? '<sup>90</sup>Sr <i>in ' + props.sr['cnt'] + ' tests</i> was ' +
-				asKilloBq(props.sr['avg'], props.pw) + ' kBq / m<sup>2</sup><br/>&emsp;from values ' + 
-				asKilloBq(props.sr['min'], props.pw) + ' &ndash; ' + asKilloBq(props.sr['max'], props.pw) +
+				specificActivity(props.sr['avg'], props.pw) + ' kBq / m<sup>2</sup><br/>&emsp;from values ' + 
+				specificActivity(props.sr['min'], props.pw) + ' &ndash; ' + specificActivity(props.sr['max'], props.pw) +
 				' kBq / m<sup>2</sup><br/>' : '');
 		}
 		this._div.innerHTML = text;
@@ -162,14 +162,15 @@
 
 	function style(feature) {
 		const props = feature.properties;
+		const hexColor = getColor(specificActivity(props.cs['max'], props.pw));
 
 		return {
 			weight: 2,
 			opacity: 1,
-			color: 'white',
+			color: counterRadius ? hexColor : 'white',
 			dashArray: '2',
 			fillOpacity: 0.7,
-			fillColor: getColor(asKilloBq(props.cs['max'], props.pw))
+			fillColor: hexColor
 		};
 	}
 
@@ -204,7 +205,6 @@
 
 	let geojson;
 	let counterRadius = 0;
-	let radz = (0.5**(map.getMaxZoom()-map.getZoom()-2)).toFixed(3);
 	let reduceData = [];
 
 	const addGeoLayer = (data) => {
@@ -217,7 +217,7 @@
 				total++;
 
 				return L.circleMarker(latlng, {
-					radius: radz*setRadius(feature.properties)
+					radius: 0.002*selectRadius(feature.properties)
 				});
 			}
 		}).addTo(map);
@@ -227,11 +227,12 @@
 
 	map.on({
 		zoomend: function(feature) {
-			radz = (0.5**(map.getMaxZoom()-map.getZoom()-2)).toFixed(3);
+			counterRadius = map.getZoom()<9;
 
 			geojson.eachLayer((layer) => {
 				if (typeof layer._radius !== 'undefined') {
-					layer.setRadius(radz*setRadius(layer.feature.properties))
+					layer.setRadius(2**map.getZoom()*layer.defaultOptions.radius);
+					geojson.resetStyle(layer);
 				}
 			});
 		}
