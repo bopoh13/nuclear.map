@@ -418,6 +418,7 @@
  "type":"Feature",
  "properties":{
   "name":"Алатырь г",
+  "marker-symbol":"town",
   "cs":{
    "cnt":5,
    "avg":0.1,

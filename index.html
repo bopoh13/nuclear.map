@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Nuclear pollution - Leaflet</title>
+	<title>The analysis results radiation (Bq) per unit area (m2) - Leaflet</title>
 	<meta charset="utf-8"/>
 	<meta name="author" content="issues:h8x@pm.me"/>
 	<meta name="date" content="2018-04-10" scheme="YYYY-MM-DD"/>
@@ -53,38 +53,65 @@
 	<script type="text/javascript">'use strict';
 	
 	// name of root directory of site
-	const url = 'https://raw.githubusercontent.com/bopoh13/nuclear.map';
+	const url = 'https://raw.githubusercontent.com/bopoh13/ramap';
 
-	const map = L.map('map-layer', {minZoom: 2}).setView([63.8, 93.8], 4);
+	const map = L.map('map-layer', {minZoom: 2}).setView([56.0, 95.0], 4);
 
-	function specificActivity(value, unit) {
+	function deposDensity(value, unit) {
 		switch(unit) {
 			case 'Ci':
 				return value<0 ? '&lt;' + value*-37 : value*37;
-			case 'Bq':
-				return value<0 ? '&lt;' + value/-1000 : value/1000;
+			case 'kBq':
+				return value<0 ? '&lt;' + value*-1 : value;
 			default:
-				console.log("Invalid value factor");
-				return value<0 ? '&lt;' + value*-1 : value*1;
+				console.log("Invalid deposition densities value");
+				return value<0 ? '&lt;' + value/-1000 : value/1000;
 		}
 	}
 
 	function selectRadius(props) {
-		let defaultRadius = 10;
+		const { cs, sr, pu } = props;
+		let defaultRadius = 2.2;
 
 		for (let item in props) {
 			if (item == 'cs') {
-				defaultRadius = props.cs['cnt'];
+				defaultRadius = cs['cnt'];
 				counterRadius++;
 				break;
 			} else if (item == 'sr') {
-				defaultRadius = props.sr['cnt'];
+				defaultRadius = sr['cnt'];
+			} else if (item == 'pu') {
+				defaultRadius = pu['cnt'];
 			}
 		}
-		return defaultRadius>10 ? defaultRadius : 10;
+		return defaultRadius>2.2 ? defaultRadius : 2.2;
 	}
 
-	const clef = 'ZHJteCIsImEiOiJjanEyd3Q5YW4xOTBiNDNwcGhrcjljeHNiIn0.KfUSr-tTIQCoWE8BtSN3Kw';
+	function infoText(item) {
+		const { cs, sr, pu, pw } = item;
+		let labels = [];
+		let text = '';
+
+		for (let obj in item) {
+			if (obj == 'cs') {
+				labels = ['<sup>137</sup>Cs', cs['cnt'], deposDensity(cs['avg'], pw), 
+					deposDensity(cs['min'], pw), deposDensity(cs['max'], pw)];
+			} else if (obj == 'sr') {
+				labels = ['<sup>90</sup>Sr', sr['cnt'], deposDensity(sr['avg'], pw), 
+					deposDensity(sr['min'], pw), deposDensity(sr['max'], pw)];
+			} else if (obj == 'pu') {
+				labels = ['<sup>239</sup>Pu', pu['cnt'], deposDensity(pu['avg'], pw), 
+					deposDensity(pu['min'], pw), deposDensity(pu['max'], pw)];
+			}
+			if (typeof item[obj] === 'object') {
+				text = `${text}${labels[0]} <i>in ${labels[1]} samples</i> was ${labels[2]} kBq / m<sup>2</sup><br/>\n` +
+					`&emsp;from values ${labels[3]} &ndash; ${labels[4]} kBq / m<sup>2</sup><br/>\n`;
+			}
+		}
+		return text;
+	}
+
+	const clef = 'Z2l0aHViIiwiYSI6ImNqaHcxdnVhZDE1Z20za2w2bXo2MGlpMjYifQ.440aOf-0gSggvf319ukLzA';
 
 	L.tileLayer(`https:\/\/api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1Ijoi${clef}`, {
 		maxZoom: 12,
@@ -105,20 +132,14 @@
 	};
 
 	info.update = function (props) {
-		let text = '<h3>Nuclear pollution</h3>';
+		let text = '<h3>Soil concentration map</h3>';
 
 		if (typeof props === 'undefined') {
 			text = `${text}Hover over an object`;
 		} else {
-			text = `${text}&emsp;<h4>${props.name}${(props.upd ? '&emsp;<sup>' +
+			text = `${text}&emsp;<h4>${props.name}${(props.upd ? '&emsp;<sup>As of ' +
 				new Date(props.upd.replace(/(\d+).(\d+).(\d+)/, '$3/$2/$1')).toLocaleDateString(window.navigator.language) +
-				'</sup><br/>' : '')}</h4>` + (props.cs ? '<sup>137</sup>Cs <i>in ' + props.cs['cnt'] + ' tests</i> was ' +
-				specificActivity(props.cs['avg'], props.pw) + ' kBq / m<sup>2</sup><br/>&emsp;from values ' +
-				specificActivity(props.cs['min'], props.pw) + ' &ndash; ' + specificActivity(props.cs['max'], props.pw) +
-				' kBq / m<sup>2</sup><br/>'	: '') + (props.sr ? '<sup>90</sup>Sr <i>in ' + props.sr['cnt'] + ' tests</i> was ' +
-				specificActivity(props.sr['avg'], props.pw) + ' kBq / m<sup>2</sup><br/>&emsp;from values ' + 
-				specificActivity(props.sr['min'], props.pw) + ' &ndash; ' + specificActivity(props.sr['max'], props.pw) +
-				' kBq / m<sup>2</sup><br/>' : '');
+				'</sup><br/>' : '')}</h4>\n` + infoText(props);
 		}
 		this._div.innerHTML = text;
 	};
@@ -162,7 +183,7 @@
 
 	function style(feature) {
 		const props = feature.properties;
-		const hexColor = getColor(specificActivity(props.cs['max'], props.pw));
+		const hexColor = getColor(deposDensity(props.cs['max'], props.pw));
 
 		return {
 			weight: 2,
@@ -227,7 +248,7 @@
 
 	map.on({
 		zoomend: function(feature) {
-			counterRadius = map.getZoom()<9;
+			counterRadius = map.getZoom()<10;
 
 			geojson.eachLayer((layer) => {
 				if (typeof layer._radius !== 'undefined') {

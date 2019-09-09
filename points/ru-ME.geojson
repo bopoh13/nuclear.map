@@ -1,0 +1,417 @@
+{"type":"FeatureCollection",
+ "features":[
+{
+ "type":"Feature",
+ "properties":{
+  "name":"Арда с",
+  "cs":{
+   "cnt":1,
+   "avg":0.1,
+   "min":0.1,
+   "max":0.1
+  },
+  "pw":"Ci"
+ },
+ "geometry":{
+  "type":"Point",
+  "coordinates":[46.7795,56.4012]
+ },
+ "id":615702608
+},
+{
+ "type":"Feature",
+ "properties":{
+  "name":"Визимьяры п",
+  "cs":{
+   "cnt":5,
+   "avg":0.1,
+   "min":0.1,
+   "max":0.1
+  },
+  "pw":"Ci"
+ },
+ "geometry":{
+  "type":"Point",
+  "coordinates":[46.9397,56.4386]
+ },
+ "id":634792566
+},
+{
+ "type":"Feature",
+ "properties":{
+  "name":"Красный Мост п",
+  "cs":{
+   "cnt":2,
+   "avg":-0.05,
+   "min":-0.05,
+   "max":0.1
+  },
+  "pw":"Ci"
+ },
+ "geometry":{
+  "type":"Point",
+  "coordinates":[47.1477,56.5593]
+ },
+ "id":634792568
+},
+{
+ "type":"Feature",
+ "properties":{
+  "name":"Озерный п",
+  "cs":{
+   "cnt":4,
+   "avg":0.1,
+   "min":0.1,
+   "max":0.1
+  },
+  "pw":"Ci"
+ },
+ "geometry":{
+  "type":"Point",
+  "coordinates":[47.1251,56.5754]
+ },
+ "id":634792569
+},
+{
+ "type":"Feature",
+ "properties":{
+  "name":"Кундышский п",
+  "cs":{
+   "cnt":6,
+   "avg":0.1,
+   "min":0.1,
+   "max":0.1
+  },
+  "pw":"Ci"
+ },
+ "geometry":{
+  "type":"Point",
+  "coordinates":[47.1707,56.5775]
+ },
+ "id":912971187
+},
+{
+ "type":"Feature",
+ "properties":{
+  "name":"Котеново д",
+  "cs":{
+   "cnt":3,
+   "avg":0.1,
+   "min":0.1,
+   "max":0.2
+  },
+  "pw":"Ci"
+ },
+ "geometry":{
+  "type":"Point",
+  "coordinates":[46.8695,56.3831]
+ },
+ "id":912971899
+},
+{
+ "type":"Feature",
+ "properties":{
+  "name":"Ершово д",
+  "cs":{
+   "cnt":1,
+   "avg":0.2,
+   "min":0.2,
+   "max":0.2
+  },
+  "pw":"Ci"
+ },
+ "geometry":{
+  "type":"Point",
+  "coordinates":[46.8493,56.3952]
+ },
+ "id":912971905
+},
+{
+ "type":"Feature",
+ "properties":{
+  "name":"Умятеево д",
+  "cs":{
+   "cnt":1,
+   "avg":0.1,
+   "min":0.1,
+   "max":0.1
+  },
+  "pw":"Ci"
+ },
+ "geometry":{
+  "type":"Point",
+  "coordinates":[46.8633,56.4072]
+ },
+ "id":912971994
+},
+{
+ "type":"Feature",
+ "properties":{
+  "name":"Сенюшкино д",
+  "cs":{
+   "cnt":1,
+   "avg":0.1,
+   "min":0.1,
+   "max":0.1
+  },
+  "pw":"Ci"
+ },
+ "geometry":{
+  "type":"Point",
+  "coordinates":[46.7144,56.4170]
+ },
+ "id":912972908
+},
+{
+ "type":"Feature",
+ "properties":{
+  "name":"Изеркино д",
+  "cs":{
+   "cnt":2,
+   "avg":0.1,
+   "min":-0.05,
+   "max":0.1
+  },
+  "pw":"Ci"
+ },
+ "geometry":{
+  "type":"Point",
+  "coordinates":[46.7455,56.4150]
+ },
+ "id":912973717
+},
+{
+ "type":"Feature",
+ "properties":{
+  "name":"Мадарский высел",
+  "cs":{
+   "cnt":4,
+   "avg":0.1,
+   "min":0.1,
+   "max":0.1
+  },
+  "pw":"Ci"
+ },
+ "geometry":{
+  "type":"Point",
+  "coordinates":[46.8938,56.4258]
+ },
+ "id":912973977
+},
+{
+ "type":"Feature",
+ "properties":{
+  "name":"Большой Ермучаш д",
+  "cs":{
+   "cnt":5,
+   "avg":0.1,
+   "min":0.1,
+   "max":0.2
+  },
+  "pw":"Ci"
+ },
+ "geometry":{
+  "type":"Point",
+  "coordinates":[47.0767,56.3559]
+ },
+ "id":913001425
+},
+{
+ "type":"Feature",
+ "properties":{
+  "name":"Малый Ермучаш д",
+  "cs":{
+   "cnt":5,
+   "avg":0.1,
+   "min":0.1,
+   "max":0.1
+  },
+  "pw":"Ci"
+ },
+ "geometry":{
+  "type":"Point",
+  "coordinates":[47.0856,56.3128]
+ },
+ "id":913006525
+},
+{
+ "type":"Feature",
+ "properties":{
+  "name":"Юксары с",
+  "cs":{
+   "cnt":3,
+   "avg":0.1,
+   "min":0.1,
+   "max":0.1
+  },
+  "pw":"Ci"
+ },
+ "geometry":{
+  "type":"Point",
+  "coordinates":[47.0308,56.3161]
+ },
+ "id":913006530
+},
+{
+ "type":"Feature",
+ "properties":{
+  "name":"Алатайкино д",
+  "cs":{
+   "cnt":4,
+   "avg":0.2,
+   "min":0.1,
+   "max":0.2
+  },
+  "pw":"Ci"
+ },
+ "geometry":{
+  "type":"Point",
+  "coordinates":[46.9264,56.2686]
+ },
+ "id":913014293
+},
+{
+ "type":"Feature",
+ "properties":{
+  "name":"Пинжедыр д",
+  "cs":{
+   "cnt":6,
+   "avg":0.1,
+   "min":0.1,
+   "max":0.2
+  },
+  "pw":"Ci"
+ },
+ "geometry":{
+  "type":"Point",
+  "coordinates":[46.8985,56.2820]
+ },
+ "id":913014297
+},
+{
+ "type":"Feature",
+ "properties":{
+  "name":"Паулкино д",
+  "cs":{
+   "cnt":2,
+   "avg":0.1,
+   "min":0.1,
+   "max":0.1
+  },
+  "pw":"Ci"
+ },
+ "geometry":{
+  "type":"Point",
+  "coordinates":[46.7852,56.4152]
+ },
+ "id":2013392995
+},
+{
+ "type":"Feature",
+ "properties":{
+  "name":"Евсейкино д",
+  "cs":{
+   "cnt":2,
+   "avg":0.1,
+   "min":0.1,
+   "max":0.1
+  },
+  "pw":"Ci"
+ },
+ "geometry":{
+  "type":"Point",
+  "coordinates":[46.9349,56.2835]
+ },
+ "id":2085629152
+},
+{
+ "type":"Feature",
+ "properties":{
+  "name":"Черемуха д",
+  "cs":{
+   "cnt":5,
+   "avg":0.1,
+   "min":0.1,
+   "max":0.1
+  },
+  "pw":"Ci"
+ },
+ "geometry":{
+  "type":"Point",
+  "coordinates":[47.0030,56.2851]
+ },
+ "id":2085629153
+},
+{
+ "type":"Feature",
+ "properties":{
+  "name":"Сорокаево д",
+  "cs":{
+   "cnt":5,
+   "avg":0.1,
+   "min":0.1,
+   "max":0.2
+  },
+  "pw":"Ci"
+ },
+ "geometry":{
+  "type":"Point",
+  "coordinates":[46.8635,56.3888]
+ },
+ "id":2124752546
+},
+{
+ "type":"Feature",
+ "properties":{
+  "name":"Шатчиково д",
+  "cs":{
+   "cnt":4,
+   "avg":0.1,
+   "min":0.1,
+   "max":0.1
+  },
+  "pw":"Ci"
+ },
+ "geometry":{
+  "type":"Point",
+  "coordinates":[46.8828,56.3983]
+ },
+ "id":2124752547
+},
+{
+ "type":"Feature",
+ "properties":{
+  "name":"Озерки д",
+  "cs":{
+   "cnt":2,
+   "avg":0.1,
+   "min":0.1,
+   "max":0.1
+  },
+  "pw":"Ci"
+ },
+ "geometry":{
+  "type":"Point",
+  "coordinates":[46.7839,56.4076]
+ },
+ "id":3526624197
+},
+{
+ "type":"Feature",
+ "properties":{
+  "name":"Большая Арда д",
+  "cs":{
+   "cnt":1,
+   "avg":0.1,
+   "min":0.1,
+   "max":0.1
+  },
+  "pw":"Ci"
+ },
+ "geometry":{
+  "type":"Point",
+  "coordinates":[46.7784,56.3912]
+ },
+ "id":3983463171
+}
+]}

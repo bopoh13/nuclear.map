@@ -36,6 +36,12 @@ Data taken from open sources for 2018.
 			"min": <MIN_POWER>,
 			"max": <MAX_POWER>
 		},
+		"pu": {
+			"cnt": <COUNT_STUDIES>,
+			"avg": <AVERAGE_POWER>,
+			"min": <MIN_POWER>,
+			"max": <MAX_POWER>
+		},
 		"pw": <POWER>,
 		"upd": <YYYY-MM-DD>
 	},
@@ -56,7 +62,7 @@ Check the circuit through [json validator](//jsonlint.com).
 
 * Geopoints are drawn on the map according to the data of the `"cs"` object,
 therefore it is better to declare it
-* The `"sr"` object is optional
+* The `"sr"` and `"pu"` objects is optional
 
 ### Notes for values:
 
@@ -65,11 +71,18 @@ therefore it is better to declare it
 * `<MAX_POWER>` must be either number of maximum measured dose
 * `<MIN_POWER>` must be either number of minimum measured dose
 * `<NODE_ID>` can be as point identifier
-* `<POWER>` must be either `"Ci"` (Curie) or `"Bq"` (Becquerel)
+* `<POWER>` must be either `"Ci"` (Curie) or `"kBq"` (k Becquerel)
 * `<YYYY-MM-DD>` can be as date test (it's advisable to follow the example format)
 
 For values `<AVERAGE_POWER>` and `<MIN_POWER>` use negative value
 if you want to specify value less than declared.
+
+## In the long-term plans desire
+You can make a pull-request with processed data from list sources, or offer a new data source.
+* Belarus: [http://chernobylgallery.com](http://chernobylgallery.com/chernobyl-disaster/radiation-levels/#attachment_2052)
+* Ukraina: [http://chernobyl.info](http://chernobyl.info/Default.aspx?tabid=197)
+* Japan: [https://emdb.jaea.go.jp](https://emdb.jaea.go.jp/emdb/en/portals/1020101001/)
+* Russia: [http://rb.mchs.gov.ru](http://rb.mchs.gov.ru/rosgidromet/Archive/Katalog_dokumentov/Dokumenti_svjazannie_s_radiacionnim_moni/Dokumenti_svjazannie_s_radiacionnimi_ava/Dokumenty_po_avarii_na_ChAES/)Atlasy/
 
 ## Possible problems
 
