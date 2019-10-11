@@ -3,7 +3,8 @@
 
 # Website info
 
-The site was created with the support of the *Leaflet* plugin.
+The site was created with the support of the *[Leaflet](//github.com/leaflet/leaflet)* plugins: 
+*[leaflet-locatecontrol](//github.com/domoritz/leaflet-locatecontrol)*.  
 Data taken from open sources for 2018.
 
 ## Structure of the base site
@@ -43,6 +44,7 @@ Data taken from open sources for 2018.
 			"max": <MAX_POWER>
 		},
 		"pw": <POWER>,
+		"radius-size": <POINT_RADIUS>,
 		"upd": <YYYY-MM-DD>
 	},
 	"geometry": {
@@ -71,6 +73,7 @@ therefore it is better to declare it
 * `<MAX_POWER>` must be either number of maximum measured dose
 * `<MIN_POWER>` must be either number of minimum measured dose
 * `<NODE_ID>` can be as point identifier
+* `<POINT_RADIUS>` can be either integer number point radius
 * `<POWER>` must be either `"Ci"` (Curie) or `"kBq"` (k Becquerel)
 * `<YYYY-MM-DD>` can be as date test (it's advisable to follow the example format)
 
@@ -82,7 +85,9 @@ You can make a pull-request with processed data from list sources, or offer a ne
 * Belarus: [http://chernobylgallery.com](http://chernobylgallery.com/chernobyl-disaster/radiation-levels/#attachment_2052)
 * Ukraina: [http://chernobyl.info](http://chernobyl.info/Default.aspx?tabid=197)
 * Japan: [https://emdb.jaea.go.jp](https://emdb.jaea.go.jp/emdb/en/portals/1020101001/)
-* Russia: [http://rb.mchs.gov.ru](http://rb.mchs.gov.ru/rosgidromet/Archive/Katalog_dokumentov/Dokumenti_svjazannie_s_radiacionnim_moni/Dokumenti_svjazannie_s_radiacionnimi_ava/Dokumenty_po_avarii_na_ChAES/)Atlasy/
+* Russia: [http://rb.mchs.gov.ru](http://rb.mchs.gov.ru/rosgidromet/Archive/Katalog_dokumentov/Dokumenti_svjazannie_s_radiacionnim_moni/Dokumenti_svjazannie_s_radiacionnimi_ava/Dokumenty_po_avarii_na_ChAES/Atlasy/) [[RU1]]
+
+[RU1]:http://rb.mchs.gov.ru/folder/5061
 
 ## Possible problems
 

@@ -93,6 +93,7 @@
 {
  "type":"Feature",
  "properties":{
+  "radius-size":2,
   "name":"Котеново д",
   "cs":{
    "cnt":3,
@@ -104,7 +105,7 @@
  },
  "geometry":{
   "type":"Point",
-  "coordinates":[46.8695,56.3831]
+  "coordinates":[46.8695,56.3811]
  },
  "id":912971899
 },
@@ -345,6 +346,7 @@
 {
  "type":"Feature",
  "properties":{
+  "radius-size":3,
   "name":"Сорокаево д",
   "cs":{
    "cnt":5,

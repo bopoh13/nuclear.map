@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>The analysis results radiation (Bq) per unit area (m2) - Leaflet</title>
+	<title>The analysis results radiation (Bq) per unit area (m2) · Leaflet</title>
 	<meta charset="utf-8"/>
 	<meta name="author" content="issues:h8x@pm.me"/>
 	<meta name="date" content="2018-04-10" scheme="YYYY-MM-DD"/>
@@ -55,34 +55,41 @@
 	// name of root directory of site
 	const url = 'https://raw.githubusercontent.com/bopoh13/ramap';
 
-	const map = L.map('map-layer', {minZoom: 2}).setView([56.0, 95.0], 4);
+	const map = L.map('map-layer', {minZoom: 2}).setView([56.0, 93.0], 4);
 
 	function deposDensity(value, unit) {
 		switch(unit) {
 			case 'Ci':
-				return value<0 ? '&lt;' + value*-37 : value*37;
+				return value<0 ? '&lt;' + (value*-37).toFixed(1) : (value*37).toFixed(1);
 			case 'kBq':
 				return value<0 ? '&lt;' + value*-1 : value;
 			default:
 				console.log("Invalid deposition densities value");
-				return value<0 ? '&lt;' + value/-1000 : value/1000;
+				return value<0 ? '&lt;' + (value/-1000).toFixed(0) : (value/1000).toFixed(0);
 		}
 	}
 
 	function selectRadius(props) {
+		const newRadius = props['radius-size'];
 		const { cs, sr, pu } = props;
 		let defaultRadius = 2.2;
 
-		for (let item in props) {
-			if (item == 'cs') {
-				defaultRadius = cs['cnt'];
-				counterRadius++;
-				break;
-			} else if (item == 'sr') {
-				defaultRadius = sr['cnt'];
-			} else if (item == 'pu') {
-				defaultRadius = pu['cnt'];
+		if (typeof newRadius === 'undefined') {
+			for (let item in props) {
+				if (item == 'cs') {
+					defaultRadius = cs['cnt'];
+					counterRadius++;
+					break;
+				} else if (item == 'sr') {
+					defaultRadius = sr['cnt'];
+				} else if (item == 'pu') {
+					defaultRadius = pu['cnt'];
+				}
 			}
+		} else {
+			//console.log(`Radius size is ${newRadius} instead of ${cs['cnt']}`);
+			defaultRadius = newRadius;
+			counterRadius++;
 		}
 		return defaultRadius>2.2 ? defaultRadius : 2.2;
 	}
