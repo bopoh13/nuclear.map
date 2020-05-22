@@ -1,118 +1,85 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<title>The analysis results radiation (Bq) per unit area (m2) · Leaflet</title>
 	<meta charset="utf-8"/>
 	<meta name="author" content="issues:h8x@pm.me"/>
-	<meta name="date" content="2018-04-10" scheme="YYYY-MM-DD"/>
+	<meta name="date" content="2018-04-10"/>
+	<meta name="description" content="The analysis results radiation per unit area"/>
+	<meta name="document-state" content="Static"/>
+	<meta name="generator" content="GitHub Pages"/>
+	<meta name="robots" content="noodp, translate"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-	<link rel="shortcut icon" href="radioactive.ico" type="image/x-icon"/>
+	<link rel="shortcut icon" type="image/x-icon" href="radioactive.ico"/>
+	<link rel="stylesheet" href="assets/main.css"/>
 	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin=""/>
-	<script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js" integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og==" crossorigin=""></script>
-
-	<style>
-		html, body {
-			height: 100%;
-			margin: 0;
-		}
-		#map-layer {
-			height: 100%;
-		}
-		.info {
-			padding: 6px 8px;
-			font: 14px/16px Arial, Helvetica, sans-serif;
-			background: rgba(255,255,255,0.8);
-			border: 2px solid rgba(0,0,0,0.2);
-			border-radius: 4px;
-		}
-		.info h3 {
-			margin: 0 0 5px;
-			color: #777;
-		}
-		.info h4 {
-			margin: -12px 0 10px;
-			color: #000;
-		}
-		.legend {
-			text-align: left;
-			line-height: 18px;
-			color: #555;
-		}
-		.legend i {
-			width: 18px;
-			height: 18px;
-			float: left;
-			margin-right: 8px;
-			opacity: 0.7;
-		}
-	</style>
+	<script charset="utf-8" src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js" integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og==" crossorigin=""></script>
+	<title>The analysis results radiation (Bq) per unit area (m2) &middot; Leaflet</title>
 </head>
 <body>
-	<div id="map-layer"></div>
-	<script type="text/javascript" src="jsonlist.js"></script>
-	<script type="text/javascript">'use strict';
-	
-	// name of root directory of site
-	const url = 'https://raw.githubusercontent.com/bopoh13/ramap';
+	<main id="frame"></main>
+	<script charset="utf-8" src="assets/config.js"></script>
+	<script>'use strict';
 
-	const map = L.map('map-layer', {minZoom: 2}).setView([56.0, 93.0], 4);
+	const soilPalette = Object.entries(palette.soilPollution);
+
+	const map = L.map('frame', {minZoom: 2}).setView([56.0, 93.0], 4);
 
 	function deposDensity(value, unit) {
-		switch(unit) {
+		switch (unit) {
 			case 'Ci':
-				return value<0 ? '&lt;' + (value*-37).toFixed(1) : (value*37).toFixed(1);
+				return value<0 ? `&lt;${(value*-37).toFixed(1)}` : (value*37).toFixed(1);
 			case 'kBq':
-				return value<0 ? '&lt;' + value*-1 : value;
+				return value<0 ? `&lt;${value*-1}` : value;
 			default:
 				console.log("Invalid deposition densities value");
-				return value<0 ? '&lt;' + (value/-1000).toFixed(0) : (value/1000).toFixed(0);
+				return value<0 ? `&lt;${(value/-1000).toFixed(0)}` : (value/1000).toFixed(0);
 		}
 	}
 
 	function selectRadius(props) {
-		const newRadius = props['radius-size'];
-		const { cs, sr, pu } = props;
+		const { cs, sr, pu } = props,
+			newRadius = props['radius-size'];
 		let defaultRadius = 2.2;
-
+		
 		if (typeof newRadius === 'undefined') {
 			for (let item in props) {
-				if (item == 'cs') {
-					defaultRadius = cs['cnt'];
+				if (item === 'cs') {
+					defaultRadius = cs.cnt;
 					counterRadius++;
 					break;
-				} else if (item == 'sr') {
-					defaultRadius = sr['cnt'];
-				} else if (item == 'pu') {
-					defaultRadius = pu['cnt'];
+				} else if (item === 'sr') {
+					defaultRadius = sr.cnt;
+				} else if (item === 'pu') {
+					defaultRadius = pu.cnt;
 				}
 			}
 		} else {
-			//console.log(`Radius size is ${newRadius} instead of ${cs['cnt']}`);
+			//console.log(`Radius size is ${newRadius} instead of ${cs.cnt}`);
 			defaultRadius = newRadius;
 			counterRadius++;
 		}
 		return defaultRadius>2.2 ? defaultRadius : 2.2;
 	}
 
-	function infoText(item) {
-		const { cs, sr, pu, pw } = item;
-		let labels = [];
-		let text = '';
-
-		for (let obj in item) {
-			if (obj == 'cs') {
-				labels = ['<sup>137</sup>Cs', cs['cnt'], deposDensity(cs['avg'], pw), 
-					deposDensity(cs['min'], pw), deposDensity(cs['max'], pw)];
-			} else if (obj == 'sr') {
-				labels = ['<sup>90</sup>Sr', sr['cnt'], deposDensity(sr['avg'], pw), 
-					deposDensity(sr['min'], pw), deposDensity(sr['max'], pw)];
-			} else if (obj == 'pu') {
-				labels = ['<sup>239</sup>Pu', pu['cnt'], deposDensity(pu['avg'], pw), 
-					deposDensity(pu['min'], pw), deposDensity(pu['max'], pw)];
+	function infoText(props) {
+		const { cs, sr, pu, pw } = props;
+		let labels = [],
+			text = '';
+		
+		for (let obj in props) {
+			if (obj === 'cs') {
+				labels = ['<sup>137</sup>Cs', cs.cnt, deposDensity(cs.avg, pw), 
+					deposDensity(cs.min, pw), deposDensity(cs.max, pw)];
+			} else if (obj === 'sr') {
+				labels = ['<sup>90</sup>Sr', sr.cnt, deposDensity(sr.avg, pw), 
+					deposDensity(sr.min, pw), deposDensity(sr.max, pw)];
+			} else if (obj === 'pu') {
+				labels = ['<sup>239</sup>Pu', pu.cnt, deposDensity(pu.avg, pw), 
+					deposDensity(pu.min, pw), deposDensity(pu.max, pw)];
 			}
-			if (typeof item[obj] === 'object') {
-				text = `${text}${labels[0]} <i>in ${labels[1]} samples</i> was ${labels[2]} kBq / m<sup>2</sup><br/>\n` +
-					`&emsp;from values ${labels[3]} &ndash; ${labels[4]} kBq / m<sup>2</sup><br/>\n`;
+			if (typeof props[obj] === 'object') {
+				text = `${text}${labels[0]} <i>in ${labels[1]} samples</i> was ${labels[2]} kBq / m<sup>2</sup><br/>\n
+					&emsp;from values ${labels[3]} &ndash; ${labels[4]} kBq / m<sup>2</sup><br/>\n`;
 			}
 		}
 		return text;
@@ -123,15 +90,15 @@
 	L.tileLayer(`https:\/\/api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1Ijoi${clef}`, {
 		maxZoom: 12,
 		//detectRetina: (L.Browser.retina ? true : false),
-		attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
-			'<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-			'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+		attribution: `Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, 
+			<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, 
+			Imagery &copy; <a href="https://www.mapbox.com/">Mapbox</a>`,
 		id: 'mapbox.light'
 	}).addTo(map);
 
 	// control that shows state info on hover
 	const info = L.control();
-
+	
 	info.onAdd = function (map) {
 		this._div = L.DomUtil.create('div', 'info');
 		this.update();
@@ -140,13 +107,13 @@
 
 	info.update = function (props) {
 		let text = '<h3>Soil concentration map</h3>';
-
+		
 		if (typeof props === 'undefined') {
 			text = `${text}Hover over an object`;
 		} else {
-			text = `${text}&emsp;<h4>${props.name}${(props.upd ? '&emsp;<sup>As of ' +
+			text = `${text}<h4>${props.name}${(props.upd ? '&emsp;<sup>As of ' +
 				new Date(props.upd.replace(/(\d+).(\d+).(\d+)/, '$3/$2/$1')).toLocaleDateString(window.navigator.language) +
-				'</sup><br/>' : '')}</h4>\n` + infoText(props);
+				'</sup><br/>' : '')}</h4>\n${infoText(props)}`;
 		}
 		this._div.innerHTML = text;
 	};
@@ -156,20 +123,21 @@
 	const legend = L.control({position: 'bottomright'});
 
 	legend.onAdd = function (map) {
+		const grades = Object.keys(palette.soilPollution).map(Number),
+			len = grades.length - 1;
 		let div = L.DomUtil.create('div', 'info legend'),
-			grades = [0, 10, 50, 150, 350, 550, 900, 1450],
-			labels = [],
-			from, to;
-
-		for (let i = 0; i < grades.length; i++) {
-			from = grades[i];
-			to = grades[i + 1];
-
+			labels = [];
+		
+		for (let i = len; i >= 0; i--) {
+			let from = grades[i],
+				to = grades[i - 1];
+			
 			labels.push(
-				`<i style="background:${getColor(from + grades[1])}"></i>` +
-				from + (to ? 'k&ndash;' + to + 'k' : 'k+'));
+				`<i style="background:${palette.soilPollution['+'+from]}"></i>
+				${from + (to ? 'k&ndash;' + to + 'k' : 'k+')}`
+			);
 		}
-
+		
 		div.innerHTML = labels.join('<br/>');
 		return div;
 	};
@@ -177,26 +145,20 @@
 	legend.addTo(map);
 
 	// get color depending on activity radionuclides value kBq/m2
-	function getColor(d) {
-		return d > 1450 ? '#800026' :
-			d > 900 ? '#BD0026' :
-			d > 550 ? '#E31A1C' :
-			d > 350 ? '#FC4E2A' :
-			d > 150 ? '#FD8D3C' :
-			d > 50 ? '#FEB24C' :
-			d > 10 ? '#FED976' :
-			'#FFEDA0';
+	function getColor(value) {
+		return soilPalette.find(([key, color]) => Number(key) < value)[1];
 	}
 
 	function style(feature) {
-		const props = feature.properties;
-		const hexColor = getColor(deposDensity(props.cs['max'], props.pw));
-
+		const { cs, pw } = feature.properties,
+			maxValue = deposDensity(cs.max, pw),
+			hexColor = getColor(maxValue);
+		
 		return {
 			weight: 2,
 			opacity: 1,
 			color: counterRadius ? hexColor : 'white',
-			dashArray: '2',
+			dashArray: 2,
 			fillOpacity: 0.7,
 			fillColor: hexColor
 		};
@@ -204,18 +166,18 @@
 
 	function highlightFeature(e) {
 		const layer = e.target;
-
+		
 		layer.setStyle({
 			weight: 4,
 			color: '#666',
-			dashArray: '1',
+			dashArray: 1,
 			fillOpacity: 0.7
 		});
-
+		
 		if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
 			layer.bringToFront();
 		}
-
+		
 		info.update(layer.feature.properties);
 	}
 
@@ -231,32 +193,32 @@
 		});
 	}
 
-	let geojson;
-	let counterRadius = 0;
-	let reduceData = [];
+	let counterRadius = 0,
+		reduceData = [],
+		geojson;
 
 	const addGeoLayer = (data) => {
 		let total = 0;
-
+		
 		geojson = L.geoJson(data, {
 			style: style,
 			onEachFeature: onEachFeature,
 			pointToLayer: function (feature, latlng) {
 				total++;
-
+				
 				return L.circleMarker(latlng, {
 					radius: 0.002*selectRadius(feature.properties)
 				});
 			}
 		}).addTo(map);
-
+		
 		console.log(`Uploaded ${counterRadius} of ${total} radius of markers.`);
 	}
 
 	map.on({
 		zoomend: function(feature) {
 			counterRadius = map.getZoom()<10;
-
+			
 			geojson.eachLayer((layer) => {
 				if (typeof layer._radius !== 'undefined') {
 					layer.setRadius(2**map.getZoom()*layer.defaultOptions.radius);
@@ -266,30 +228,37 @@
 		}
 	});
 
-	map.attributionControl.addAttribution('Expert Data from 1986 &copy; <a href="http://rb.mchs.gov.ru/rosgidromet/Archive/">SPA "Typhoon"</a>');
+	map.attributionControl.addAttribution('Expert Data from 1986 &copy; <a href="http://rb.mchs.gov.ru/rosgidromet/Archive/">SPA Typhoon</a>');
 
 	function filterData(obj) {
-		return obj.features.filter((item) => item.geometry.type == 'Point');
+		return obj.features.filter((item) => item.geometry.type === 'Point');
 	}
 
-	const fetchCount = async (filename) => {
-		const response = await fetch(`${url}/master/points/${filename}`);
-		const json = await response.json();
-		return json;
-	}
-	const counts = jsonfiles.map(async (filename) => {
-		const count = await fetchCount(filename);
-		return count;
+	const getAllPoints = jsonfiles.map(async (filename) => {
+		try {
+			const response = await fetch(`./points/${filename}`);			
+			const json = await response.json();
+			return json;
+		} catch (e) {
+			e.message = `${e.message}`;
+			throw e;
+		}
 	});
 
-	Promise.all(counts).then((data) => {
+	Promise.all(getAllPoints).then((data) => {
 		data.forEach((obj) => {
 			reduceData.push.apply(reduceData, filterData(obj));
 		});
+	}).finally(() => {
+		if (reduceData.length > 0) {
+			console.info(`${reduceData.length} Points loaded`);
+		} else {
+			console.error(`Points not loaded`);
+		};
 	}).then(() => {
 		addGeoLayer(reduceData) // && setCirclesMarkers
 	}).catch((error) => {
-		console.log('Error:', error);
+		console.error(error);
 	});
 
 	</script>

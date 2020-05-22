@@ -1,11 +1,10 @@
-[License]://choosealicense.com/licenses/mit/
-[geopoints]://help.github.com/en/articles/mapping-geojson-files-on-github
+[License]: LICENSE
+[geopoints]: //help.github.com/en/articles/mapping-geojson-files-on-github
 
 # Website info
 
-The site was created with the support of the *[Leaflet](//github.com/leaflet/leaflet)* plugins: 
-*[leaflet-locatecontrol](//github.com/domoritz/leaflet-locatecontrol)*.  
-Data taken from open sources for 2018.
+Data taken from open sources for 2018.  
+The site was created with the support of the *[Leaflet](//github.com/leaflet/leaflet)*.
 
 ## Structure of the base site
 
@@ -82,12 +81,16 @@ if you want to specify value less than declared.
 
 ## In the long-term plans desire
 You can make a pull-request with processed data from list sources, or offer a new data source.
-* Belarus: [http://chernobylgallery.com](http://chernobylgallery.com/chernobyl-disaster/radiation-levels/#attachment_2052)
-* Ukraina: [http://chernobyl.info](http://chernobyl.info/Default.aspx?tabid=197)
-* Japan: [https://emdb.jaea.go.jp](https://emdb.jaea.go.jp/emdb/en/portals/1020101001/)
-* Russia: [http://rb.mchs.gov.ru](http://rb.mchs.gov.ru/rosgidromet/Archive/Katalog_dokumentov/Dokumenti_svjazannie_s_radiacionnim_moni/Dokumenti_svjazannie_s_radiacionnimi_ava/Dokumenty_po_avarii_na_ChAES/Atlasy/) [[RU1]]
+* :earth_africa: Soviet Union
+  * :white_circle: [http://chernobylgallery.com]
+  * :red_circle: Ukraina: [http://chernobyl.info]
+  * :yellow_circle: Russia: [http://rb.mchs.gov.ru] [[VURS](http://rb.mchs.gov.ru/folder/5061)]
+* :japan: Japan: [https://emdb.jaea.go.jp](//emdb.jaea.go.jp/emdb/en/portals/1020101001/)
+* :earth_americas: World: [Nuclear weapons](//www.arcgis.com/home/webmap/viewer.html?useExisting=1&layers=e4d37e29e46f40acba0b1dc719aa99cd)
 
-[RU1]:http://rb.mchs.gov.ru/folder/5061
+[http://chernobylgallery.com]: http://chernobylgallery.com/chernobyl-disaster/radiation-levels/#attachment_2052
+[http://chernobyl.info]: http://chernobyl.info/Default.aspx?tabid=197
+[http://rb.mchs.gov.ru]: http://rb.mchs.gov.ru/rosgidromet/Archive/Katalog_dokumentov/Dokumenti_svjazannie_s_radiacionnim_moni/Dokumenti_svjazannie_s_radiacionnimi_ava/Dokumenty_po_avarii_na_ChAES/Atlasy/
 
 ## Possible problems
 
